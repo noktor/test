@@ -54,6 +54,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+		<script src="js/calculadora.js" type="text/javascript"></script>
 		<title>
 			Calculadora
 		</title>
@@ -63,7 +65,7 @@
 	</head>
 	<body>
 		<form action="index.php" method="POST">
-			<input type="text" placeholder="0" name="contenidor" value="<?php if(isset($total)){ echo $total; }?>"/>
+			<input id="calcul" type="text" placeholder="0" name="contenidor" value="<?php if(isset($total)){ echo $total; }?>"/>
 			<!--missatge de validació -->
 			<?php 
 			if(isset($_POST['operar'])){
@@ -74,31 +76,33 @@
 			?>
 			<br>
 			<!--numeros 1-2-3 -->
-			<input type="button" name="1" value="1"/>
-			<input type="button" name="2" value="2"/>
-			<input type="button" name="3" value="3"/>
+			<input class="num" type="button" name="1" value="1"/>
+			<input class="num" type="button" name="2" value="2"/>
+			<input class="num" type="button" name="3" value="3"/>
 			<!--sumar-->			
-			<input type="radio" name="operacio" value="+" checked="true">+</input><br>		
+			<input class="num" type="button" name="operacio" value="+" checked="true">+</input><br>		
 			<!--numeros 4-5-6 -->			
-			<input type="button" name="4" value="4"/>
-			<input type="button" name="5" value="5"/>
-			<input type="button" name="6" value="6"/>
+			<input class="num" type="button" name="4" value="4"/>
+			<input class="num" type="button" name="5" value="5"/>
+			<input class="num" type="button" name="6" value="6"/>
 			<!--restar-->			
-			<input type="radio" name="operacio" value="-"/>-</input><br>	
+			<input class="num" type="button" name="operacio" value="-"/>-</input><br>	
 			<!--numeros 7-8-9 -->			
-			<input type="button" name="7" value="7"/>
-			<input type="button" name="8" value="8"/>
-			<input type="button" name="9" value="9"/>
+			<input class="num" type="button" name="7" value="7"/>
+			<input class="num" type="button" name="8" value="8"/>
+			<input class="num" type="button" name="9" value="9"/>
 			<!--multiplicar-->			
-			<input type="radio" name="operacio" value="*"/>*</input><br>
+			<input class="num" type="button" name="operacio" value="*"/>*</input><br>
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<!--numero 0 -->			
-			<input type="button" name="0" value="0"/>
+			<input class="num" type="button" name="0" value="0"/>
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			
 			<!--dividir-->
-			<input type="radio" name="operacio" value="/"/>/</input>						
+			<input class="num" type="button" name="operacio" value="/"/>/</input>						
+			<input id="borrarTot" type="button" name="operacio" value="borrar tot"/>/</input>						
+			<input id="borrarCaracter" type="button" name="operacio" value="borrar caràcter"/>/</input>						
 			<!--calcular-->			
-			<input type="submit" name="operar" value="="/>
+			<button type="submit" name="operar">=</button>
 		</form>
 		<?php
 			/*if(isset($contenidor)){

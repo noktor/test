@@ -11,6 +11,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<link rel="stylesheet/less" type="text/css" href="css/style.less" />
+		<script src="js/less-1.5.0.min.js" type="text/javascript"></script>
 		<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
 		<script src="js/calculadora.js" type="text/javascript"></script>
 		<title>

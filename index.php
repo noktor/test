@@ -19,8 +19,8 @@
 		return $es_valid;
 	}
 
-	if(isset($_POST['contenidor'])){
-		$contenidor = $_POST['contenidor'];
+	if(isset($_GET['contenidor'])){
+		$contenidor = $_GET['contenidor'];
 	}
 
 	function saberCalcul($cadena){
@@ -44,10 +44,11 @@
 
 	$esvalid1 = false;
 	$esvalid2 = false;
-	if(isset($_POST["operar"]) && $_POST["contenidor"] != ""){		
-		//$operacio=$_POST["operacio"];
-		$operacio=saberCalcul($_POST['contenidor']);
-		$contenidor_aux = explode($operacio,$_POST["contenidor"]);
+	$total = 0;	
+	if(isset($_GET["operar"]) && $_GET["contenidor"] != ""){		
+		//$operacio=$_GET["operacio"];
+		$operacio=saberCalcul($_GET['contenidor']);
+		$contenidor_aux = explode($operacio,$_GET["contenidor"]);
 		$num1 = $contenidor_aux[0];
 		$num2 = $contenidor_aux[1];
 		FB::send($operacio .",". $num1 .",". $num2);
@@ -55,7 +56,6 @@
 		$esvalid2 = validar_nombre($num2);
 		FB::send("Són vàlids? ==> Num1: ". $esvalid1 ."Num2: ". $esvalid2);
 		if($esvalid1 && $esvalid2){
-			$total = 0;
 			if($operacio == "+"){
 				$total = $num1 + $num2;
 			}
@@ -86,11 +86,11 @@
 		</script>
 	</head>
 	<body>
-		<form action="index.php" method="POST">
+		<form action="index.php" method="GET">
 			<input id="calcul" type="text" placeholder="0" name="contenidor" value="<?php if(isset($total)){ echo $total; }?>"/>
 			<!--missatge de validació -->
 			<?php 
-			if(isset($_POST['operar'])){
+			if(isset($_GET['operar'])){
 				if($esvalid1 == false || $esvalid2 == false){ 
 					echo "La calculadora nomès accepta nombres i símbols matemàtics.";
 				}
@@ -124,7 +124,7 @@
 			<input id="borrarTot" type="button" name="operacio" value="borrar tot"/></input>						
 			<input id="borrarCaracter" type="button" name="operacio" value="borrar caràcter"/></input>						
 			<!--calcular-->			
-			<button type="submit" name="operar">=</button>
+			<button id="operar" type="submit" name="operar">=</button>
 		</form>
 		<?php
 			/*if(isset($contenidor)){

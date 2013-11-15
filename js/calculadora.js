@@ -35,8 +35,26 @@ function onReady(){
 		//$('#calcul').val(valor_calcul+valor);
 		console.log($calcul.val());
 		console.timeEnd('event');
-	});		
+	});
+	$('#operar').on('click', function(event){
+		event.preventDefault();
+		$.ajax({
+			url: "ajax.php",
+			type: "get",
+			data: {operar:1, contenidor:$calcul.val()},
+			dataType: "json"
+		})
+		.done(function(data){
+			$calcul.val(data);
+		})
+		.fail(function(){
+			alert("Error al calcular.");
+		});		
+	});	
 }
+
+
+
 /*
 var val = 0,
 $elm = $('#calcul');

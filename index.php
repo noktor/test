@@ -36,9 +36,9 @@
 				//FB::send("test");
 			}		
 		}
-		echo $simbol_operador;
+		//echo $simbol_operador;
 		//echo $simbol_operador;	
-		print_r($symbols);
+		//print_r($symbols);
 		return $simbol_operador;		
 	}
 
@@ -67,8 +67,7 @@
 			}
 			if($operacio == "/"){
 				$total = $num1 / $num2;
-			}	
-			echo $total;					
+			}		
 		}
 	}
 

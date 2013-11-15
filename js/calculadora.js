@@ -11,8 +11,14 @@ function onReady(){
 		$calcul.val(valor_calcul+valor);
 		//var valor_calcul = $('#calcul').val();
 		//$('#calcul').val(valor_calcul+valor);
-
 		console.timeEnd('event');
+		var string = $(this).val();
+		var caracter = string.substring(string.length - length-1);
+		if(!isNaN(caracter) && caracter != ""){
+			console.log('caràcter afegit '+caracter);
+		} else {
+			event.preventDefault();
+		}
 	});
 	$('#borrarTot').on('click', function(event){
 		console.time('event');
@@ -36,6 +42,23 @@ function onReady(){
 		console.log($calcul.val());
 		console.timeEnd('event');
 	});
+
+	/*valida l'estat actual del contenidor del càlcul
+	(comprova caràcters numèricsi simbols d'operació):*/
+	$('#calcul').on('keypress', function(event){
+		var string = $(this).val();
+		var caracter = string.substring(string.length - length-1);
+		console.log("-"+caracter+"-");
+		console.log(event);
+		if(!isNaN(caracter) && caracter != ""){
+			console.log('caràcter afegit '+caracter);
+		} else {
+			console.log( isNaN(caracter) );
+			console.log( caracter!="" );
+			event.preventDefault();
+		}
+	});
+
 	$('#operar').on('click', function(event){
 		event.preventDefault();
 		$.ajax({
@@ -45,7 +68,11 @@ function onReady(){
 			dataType: "json"
 		})
 		.done(function(data){
-			$calcul.val(data);
+			if(data.error !== true){
+				$calcul.val(data.total);
+			} else {
+				$("#error").text("La calculadora nomès accepta nombres i símbols matemàtics.");
+			}
 		})
 		.fail(function(){
 			alert("Error al calcular.");

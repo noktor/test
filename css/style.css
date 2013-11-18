@@ -1,0 +1,50 @@
+#main {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  background-color: #cd8d00;
+  margin-left: 40%;
+  margin-top: 5%;
+  width: 144px;
+  position: relative;
+  -webkidt-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  border-radius: 15px;
+}
+#main #calcul {
+  background-color: #ffff64;
+  border: solid #ffbf00;
+  width: 140px;
+  margin-left: 2px;
+  margin-top: 10px;
+  -webkidt-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+#main .tecla {
+  display: inline-block;
+  background-color: #ffbf00;
+  border: solid #ffd819;
+  -webkidt-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  margin-right: 4px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+#main .tecla:hover {
+  background-color: #ffd819;
+}
+#main .tecla:active {
+  border: solid #ffbf00;
+}

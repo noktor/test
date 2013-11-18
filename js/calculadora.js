@@ -68,9 +68,11 @@ function onReady(){
 			dataType: "json"
 		})
 		.done(function(data){
-			if(data.error !== true){
+			if(data.error === 0){
 				$calcul.val(data.total);
-			} else {
+			} else if (data.error === -1) {
+				$("#error").text("Un nombre sol no es pot operar.");
+			} else if (data.error === 1) {
 				$("#error").text("La calculadora nomès accepta nombres i símbols matemàtics.");
 			}
 		})

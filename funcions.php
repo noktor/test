@@ -7,14 +7,22 @@
 		//	FB::send('volta '.$i);
 		//	FB::send($es_valid);
 			FB::send("-".$cad[$i]."-");
-			if(!is_numeric($cad[$i])){
+			if(is_numeric($cad[$i]) || $cad[$i] == "."){
+				FB::send('iteració: '.$i);
+			} else {
 				$es_valid = false;
 		//		echo $es_valid;
 				FB::send('no és vàlid, caràcter: '.$cad[$i]);
-				break;
-			} else {
-				FB::send('iteració: '.$i);
-			}
+				break;				
+			}			
+		//	if(!is_numeric($cad[$i])){
+		//		$es_valid = false;
+		//		echo $es_valid;
+		//		FB::send('no és vàlid, caràcter: '.$cad[$i]);
+		//		break;
+		//	} else {
+		//		FB::send('iteració: '.$i);
+		//	}
 		}
 		return $es_valid;
 	}
@@ -43,7 +51,12 @@
 	}
 
 	function calcular($contenidor){
-		$total = false;		
+		$error = 0;
+		$total = false;
+		$resposta = array(
+			"error"=>$error,
+			"total"=>$total
+			);	
 		$operacio=saberCalcul($contenidor);
 		if($operacio !== false){
 			$contenidor_aux = explode($operacio,$contenidor);
@@ -55,18 +68,23 @@
 			FB::send("Són vàlids? ==> Num1: ". $esvalid1 ."Num2: ". $esvalid2);
 			if($esvalid1 && $esvalid2){
 				if($operacio == "+"){
-					$total = $num1 + $num2;
+					$resposta["total"] = $num1 + $num2;
 				}
 				if($operacio == "-"){
-					$total = $num1 - $num2;
+					$resposta["total"] = $num1 - $num2;
 				}
 				if($operacio == "*"){
-					$total = $num1 * $num2;
+					$resposta["total"] = $num1 * $num2;
 				}
 				if($operacio == "/"){
-					$total = $num1 / $num2;
+					$resposta["total"] = $num1 / $num2;
 				}		
+			} else {
+				$resposta["error"] = 1;
 			}
+		} else {
+			//Estat -1 indica que l'usuari nomès ha afegit un nombre:
+			$resposta["error"] = -1;
 		}
-		return $total;
+		return $resposta;
 	}

@@ -1,4 +1,48 @@
 
-body{
-	background-color:orange;	
+@taronja: #FFBF00;
+
+.unselectable(@selectable: none) {
+        -moz-user-select: @selectable; 
+        -khtml-user-select: @selectable; 
+        -webkit-user-select: @selectable; 
+        -o-user-select: @selectable;
+}
+
+.rounded-corners (@radius: 5px) {
+  -webkidt-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+#main {
+	.unselectable;	
+	background-color: @taronja - 50;
+	margin-left:40%;
+	margin-top:5%;
+	width:144px;
+	position:relative;
+	.rounded-corners(15px);
+
+	#calcul {
+		background-color: @taronja + 100;
+		border:solid @taronja;
+		width:140px;
+		margin-left: 2px;	
+		margin-top: 10px;
+		.rounded-corners(5px);		
+	}	
+
+	.tecla {
+		display:inline-block;
+		background-color: @taronja;
+		border:solid @taronja + 25;
+		.rounded-corners(5px);
+		margin-bottom: 5px;
+		margin-right:4px;
+		&:hover{background-color: @taronja + 25;}
+		&:active {border:solid @taronja;}
+		.unselectable;			
+	}
 }
